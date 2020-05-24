@@ -25,3 +25,36 @@ const todoItems = [
     completed: false
   }
 ];
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewCompleted: false,
+      todoList: todoItems
+    };
+  }
+  displayCompleted = status => {
+    if (status) {
+      return this.setState({ viewCompleted: true });
+    }
+    return this.setState({ viewCompleted: false });
+  };
+  renderTabList = () => {
+    return (
+      <div className="my-5 tab-list">
+        <span
+          onClick={() => this.displayCompleted(true)}
+          className={this.state.viewCompleted ? "active" : ""}
+        >
+          complete
+            </span>
+        <span
+          onClick={() => this.displayCompleted(false)}
+          className={this.state.viewCompleted ? "" : "active"}
+        >
+          Incomplete
+            </span>
+      </div>
+    );
+  };
